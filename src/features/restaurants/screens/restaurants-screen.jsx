@@ -45,7 +45,6 @@ export const RestaurantScreen = () => {
       <RestaurantList
         data={restaurants}
         renderItem={({ item }) => {
-          console.log(item);
           return (
             <Spacer variant="bottom" size="large">
               <RestaurantInfoCard restaurants={item} />
