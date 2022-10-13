@@ -1,0 +1,13 @@
+{
+   "extends": ["@react-native-community", "plugin:react/jsx-runtime"],
+   "parserOptions": {
+      "ecmaFeatures": {
+         "jsx": true
+      },
+      "ecmaVersion": 12,
+      "sourceType": "module"
+   },
+   "rules": {
+      "quotes": [0, "single", { "avoidEscape": true }]
+   }
+}
