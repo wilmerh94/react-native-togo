@@ -2,6 +2,7 @@
 import { SvgXml } from "react-native-svg";
 import open from "../../../../assets/open";
 import star from "../../../../assets/star";
+import { Favorite } from "../../../components/favorite/favorite.component";
 
 /* Component */
 
@@ -23,7 +24,7 @@ import {
 
 /* Main */
 
-export const RestaurantInfoCard = ({ restaurants = {} }) => {
+export const RestaurantInfoCard = ({ restaurant = {} }) => {
   const {
     name = "Some restaurant",
     icon = "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/lodging-71.png",
@@ -34,19 +35,26 @@ export const RestaurantInfoCard = ({ restaurants = {} }) => {
     isOpenNow = true,
     rating = 4,
     isClosedTemporarily = true,
-  } = restaurants;
+    placeId,
+  } = restaurant;
 
   const ratingArray = Array.from(new Array(Math.floor(rating)));
 
   return (
     <RestaurantCard elevation={5}>
+      <Favorite restaurant={restaurant} />
       <RestaurantCardCover key={name} source={{ uri: photos[0] }} />
       <Info>
         <Text variant="label">{name}</Text>
         <Section>
           <Rating>
-            {ratingArray.map(() => (
-              <SvgXml xml={star} width={20} height={20} />
+            {ratingArray.map((_, i) => (
+              <SvgXml
+                key={`star-${placeId}-${i}`}
+                xml={star}
+                width={20}
+                height={20}
+              />
             ))}
           </Rating>
           <SectionEnd>
