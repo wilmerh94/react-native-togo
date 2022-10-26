@@ -1,17 +1,12 @@
-/* eslint-disable comma-dangle */
 import camelize from "camelize";
+import { host, isMock } from "../../utils/env";
 
-export const locationRequest = (searchTerm) => {
-  return fetch(
-    `http://127.0.0.1:5001/mealstogo-ca4f2/us-central1/geocode?city=${searchTerm}`
-  ).then((res) => {
-    return res.json();
-  });
+export const locationRequest = async (searchTerm) => {
+  const res = await fetch(`${host}/geocode?city=${searchTerm}&mock=${isMock}`);
+  return await res.json();
 };
 
 export const locationTransform = (result) => {
-  console.log(result);
-
   const formattedResponse = camelize(result);
   const { geometry = {} } = formattedResponse.results[0];
   const { lat, lng } = geometry.location;
