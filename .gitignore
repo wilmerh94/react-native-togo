@@ -17,3 +17,4 @@ web-build/
 firebase-debug.log
 ui-debug.log
 .runtimeconfig.json
+*/utils/**
