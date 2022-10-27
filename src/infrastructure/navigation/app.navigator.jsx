@@ -1,7 +1,9 @@
 import { Ionicons } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { CheckoutScreen } from "../../features/checkout/screen/checkout.screen";
 
 import { MapScreen } from "../../features/map/screens/map.screen";
+
 import { FavoriteContextProvider } from "../../services/favorites/favorites.context";
 import { LocationContextProvider } from "../../services/location/location.context";
 import { RestaurantsContextProvider } from "../../services/restaurants/restaurants.context";
@@ -12,6 +14,7 @@ const Tab = createBottomTabNavigator();
 
 const TAB_ICON = {
   Restaurants: "md-restaurant",
+  Checkout: "md-cart",
   Map: "md-map",
   Settings: "md-settings",
 };
@@ -36,6 +39,13 @@ export const AppNavigator = () => {
             <Tab.Screen
               name="Restaurants"
               component={RestaurantsNavigator}
+              options={{
+                headerShown: false,
+              }}
+            />
+            <Tab.Screen
+              name="Checkout"
+              component={CheckoutScreen}
               options={{
                 headerShown: false,
               }}
