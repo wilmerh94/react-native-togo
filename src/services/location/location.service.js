@@ -1,6 +1,6 @@
-import camelize from "camelize";
-import { host, isMock } from "../../utils/env";
-import axios from "axios";
+import camelize from 'camelize';
+import { host, isMock } from '../../utils/env';
+import axios from 'axios';
 
 export const locationRequest = async (searchTerm) => {
   const res = await fetch(`${host}/geocode?city=${searchTerm}&mock=${isMock}`);

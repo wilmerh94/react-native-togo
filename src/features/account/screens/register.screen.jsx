@@ -1,8 +1,8 @@
-import { useContext, useState } from "react";
-import { ActivityIndicator, MD2Colors } from "react-native-paper";
-import { Spacer } from "../../../components/spacer/spacer.component";
-import { Text } from "../../../components/typography/text.component";
-import { AuthenticationContext } from "../../../services/authentication/authentication.context";
+import { useContext, useState } from 'react';
+import { ActivityIndicator, MD2Colors } from 'react-native-paper';
+import { Spacer } from '../../../components/spacer/spacer.component';
+import { Text } from '../../../components/typography/text.component';
+import { AuthenticationContext } from '../../../services/authentication/authentication.context';
 import {
   AccountBackground,
   AccountContainer,
@@ -10,13 +10,13 @@ import {
   AuthButton,
   AuthInput,
   ErrorContainer,
-  Title,
-} from "../components/account.styles";
+  Title
+} from '../components/account.styles';
 
 export const RegisterScreen = ({ navigation }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [repeatedPassword, setRepeatedPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [repeatedPassword, setRepeatedPassword] = useState('');
 
   const { onRegister, isLoading, error } = useContext(AuthenticationContext);
   return (

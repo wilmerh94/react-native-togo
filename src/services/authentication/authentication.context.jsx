@@ -1,14 +1,12 @@
-/* eslint-disable comma-dangle */
-
 import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
   signInWithEmailAndPassword,
-  signOut,
-} from "firebase/auth";
-import { doc, setDoc, updateDoc } from "firebase/firestore";
-import { createContext, useEffect, useState } from "react";
-import { auth, db } from "../../../firebase-config";
+  signOut
+} from 'firebase/auth';
+import { doc, setDoc, updateDoc } from 'firebase/firestore';
+import { createContext, useEffect, useState } from 'react';
+import { auth, db } from '../../../firebase-config';
 
 export const AuthenticationContext = createContext();
 export const AuthenticationContextProvider = ({ children }) => {
@@ -19,11 +17,11 @@ export const AuthenticationContextProvider = ({ children }) => {
     // This is an observable so It need to be disabled after I use it
     const unsubscribe = onAuthStateChanged(auth, (usr) => {
       if (usr) {
-        console.log("User is Active");
+        console.log('User is Active');
         const { email, photoURL, displayName, uid } = usr;
         setUser({ email, photoURL, displayName, uid });
       } else {
-        console.log("User is not Active");
+        console.log('User is not Active');
 
         setUser(null);
       }
@@ -40,7 +38,7 @@ export const AuthenticationContextProvider = ({ children }) => {
         email,
         password
       );
-      const docRef = doc(db, "users", userCredential.user.uid);
+      const docRef = doc(db, 'users', userCredential.user.uid);
       setUser(docRef);
       setIsLoading(false);
       setError(null);
@@ -54,7 +52,7 @@ export const AuthenticationContextProvider = ({ children }) => {
     setIsLoading(true);
     if (password !== repeatedPassword) {
       setIsLoading(false);
-      setError("Error: Passwords do not match");
+      setError('Error: Passwords do not match');
       return;
     }
     try {
@@ -66,18 +64,18 @@ export const AuthenticationContextProvider = ({ children }) => {
       //  Getting uid
       const userRegistered = userCredential.user;
       if (!userCredential) {
-        console.error("Could not complete Sign Up");
+        console.error('Could not complete Sign Up');
       }
       const formDataCopy = {
         online: true,
-        email,
+        email
       };
       //  Creating collection of Users
-      await setDoc(doc(db, "users", userRegistered.uid), formDataCopy);
+      await setDoc(doc(db, 'users', userRegistered.uid), formDataCopy);
       setIsLoading(false);
       setError(null);
 
-      console.log("User created successfully");
+      console.log('User created successfully');
     } catch (e) {
       setError(e.code);
       setIsLoading(false);
@@ -91,9 +89,9 @@ export const AuthenticationContextProvider = ({ children }) => {
 
     try {
       const { uid } = user;
-      const docRef = doc(db, "users", uid);
+      const docRef = doc(db, 'users', uid);
       await updateDoc(docRef, {
-        online: false,
+        online: false
       });
 
       signOut(auth);
@@ -114,7 +112,7 @@ export const AuthenticationContextProvider = ({ children }) => {
         error,
         onLogin,
         onRegister,
-        onLogout,
+        onLogout
       }}
     >
       {children}

@@ -1,9 +1,9 @@
-import { useContext, useState } from "react";
-import { ActivityIndicator, MD2Colors } from "react-native-paper";
+import { useContext, useState } from 'react';
+import { ActivityIndicator, MD2Colors } from 'react-native-paper';
 
-import { Spacer } from "../../../components/spacer/spacer.component";
-import { Text } from "../../../components/typography/text.component";
-import { AuthenticationContext } from "../../../services/authentication/authentication.context";
+import { Spacer } from '../../../components/spacer/spacer.component';
+import { Text } from '../../../components/typography/text.component';
+import { AuthenticationContext } from '../../../services/authentication/authentication.context';
 import {
   AccountBackground,
   AccountContainer,
@@ -11,12 +11,12 @@ import {
   AuthButton,
   AuthInput,
   ErrorContainer,
-  Title,
-} from "../components/account.styles";
+  Title
+} from '../components/account.styles';
 
 export const LoginScreen = ({ navigation }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const { onLogin, isLoading, error } = useContext(AuthenticationContext);
   return (

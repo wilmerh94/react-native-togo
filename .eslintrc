@@ -11,7 +11,15 @@
       "sourceType": "module"
    },
    "rules": {
-      "quotes": [0, "single", { "avoidEscape": true }]
+      "quotes": [0, "single", { "avoidEscape": true }],
+      "comma-dangle": ["error", { "functions": "never" }],
+      "prettier/prettier": [
+         "error",
+         {
+            "singleQuote": true,
+            "trailingComma": "none"
+         }
+      ]
       // "react-native/no-unused-styles": 2,
       // "react-native/split-platform-components": 2,
       // "react-native/no-inline-styles": 2,

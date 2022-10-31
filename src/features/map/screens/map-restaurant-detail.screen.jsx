@@ -1,11 +1,10 @@
 import { useState } from 'react';
 import { ScrollView } from 'react-native';
 import { List } from 'react-native-paper';
-
 import { SafeArea } from '../../../components/utility/safe-area.component';
-import { RestaurantInfoCard } from '../components/restaurants-info-card.components';
+import { RestaurantInfoCard } from '../../restaurants/components/restaurants-info-card.components';
 
-export const RestaurantDetailScreen = ({ route }) => {
+export const MapRestaurantDetailScreen = ({ route }) => {
   const [breakfastExpanded, setBreakfastExpanded] = useState(false);
   const [lunchExpanded, setLunchExpanded] = useState(false);
   const [dinnerExpanded, setDinnerExpanded] = useState(false);

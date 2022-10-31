@@ -1,6 +1,6 @@
-import camelize from "camelize";
-import { host, isMock } from "../../utils/env";
-import axios from "axios";
+import camelize from 'camelize';
+import { host, isMock } from '../../utils/env';
+import axios from 'axios';
 
 export const restaurantsRequest = async (location) => {
   const url = `${host}/placesNearby?location=${location}&mock=${isMock}`;
@@ -16,7 +16,7 @@ export const restaurantsTransform = ({ results = [] }) => {
       ...restaurant,
       address: restaurant.vicinity,
       isOpenNow: restaurant.opening_hours && restaurant.opening_hours.open_now,
-      isClosedTemporarily: restaurant.business_status === "CLOSED_TEMPORARILY",
+      isClosedTemporarily: restaurant.business_status === 'CLOSED_TEMPORARILY'
     };
   });
 

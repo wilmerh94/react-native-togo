@@ -1,11 +1,11 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from 'react';
 
 import {
   restaurantsRequest,
-  restaurantsTransform,
-} from "./restaurants.service";
+  restaurantsTransform
+} from './restaurants.service';
 
-import { LocationContext } from "../location/location.context";
+import { LocationContext } from '../location/location.context';
 
 export const RestaurantsContext = createContext();
 
@@ -22,10 +22,10 @@ export const RestaurantsContextProvider = ({ children }) => {
 
     try {
       const restaurantsService = await restaurantsRequest(loc);
-      const restaurants = restaurantsTransform(restaurantsService);
+      const restaurantsReady = restaurantsTransform(restaurantsService);
       setError(null);
       setIsLoading(false);
-      setRestaurants(restaurants);
+      setRestaurants(restaurantsReady);
     } catch (err) {
       console.log(err.message);
 
@@ -45,7 +45,7 @@ export const RestaurantsContextProvider = ({ children }) => {
       value={{
         restaurants,
         isLoading,
-        error,
+        error
       }}
     >
       {children}

@@ -1,10 +1,10 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { Camera } from "expo-camera";
-import { useContext, useEffect, useRef, useState } from "react";
-import { TouchableOpacity, View } from "react-native";
-import styled from "styled-components/native";
-import { Text } from "../../../components/typography/text.component";
-import { AuthenticationContext } from "../../../services/authentication/authentication.context";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Camera } from 'expo-camera';
+import { useContext, useEffect, useRef, useState } from 'react';
+import { TouchableOpacity, View } from 'react-native';
+import styled from 'styled-components/native';
+import { Text } from '../../../components/typography/text.component';
+import { AuthenticationContext } from '../../../services/authentication/authentication.context';
 
 const ProfileCamera = styled(Camera)`
   width: 100%;
@@ -34,7 +34,7 @@ export const CameraScreen = ({ navigation }) => {
   useEffect(() => {
     (async () => {
       const { status } = await Camera.requestCameraPermissionsAsync();
-      setHasPermission(status === "granted");
+      setHasPermission(status === 'granted');
     })();
   }, []);
 

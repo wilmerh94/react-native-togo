@@ -1,4 +1,5 @@
-import styled from "styled-components/native";
+import styled from 'styled-components/native';
+import { withTheme } from 'react-native-paper';
 
 const defaultTextStyles = (theme) => `
 font-family: ${theme.fonts.body};
@@ -36,5 +37,5 @@ export const Text = styled.Text`
 `;
 
 Text.DefaultProps = {
-  variant: "body",
+  variant: 'body'
 };

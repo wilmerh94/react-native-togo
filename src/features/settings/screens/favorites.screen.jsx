@@ -1,13 +1,13 @@
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
-import { useContext } from "react";
-import styled from "styled-components/native";
-import { Spacer } from "../../../components/spacer/spacer.component";
-import { Text } from "../../../components/typography/text.component";
-import { SafeArea } from "../../../components/utility/safe-area.component";
-import { FavoriteContext } from "../../../services/favorites/favorites.context";
-import { RestaurantList } from "../../restaurants/components/restaurant-list.styles";
-import { RestaurantInfoCard } from "../../restaurants/components/restaurants-info-card.component";
+import { useContext } from 'react';
+import styled from 'styled-components/native';
+import { Spacer } from '../../../components/spacer/spacer.component';
+import { Text } from '../../../components/typography/text.component';
+import { SafeArea } from '../../../components/utility/safe-area.component';
+import { FavoriteContext } from '../../../services/favorites/favorites.context';
+import { RestaurantList } from '../../restaurants/components/restaurant-list.styles';
+import { RestaurantInfoCard } from '../../restaurants/components/restaurants-info-card.component';
 
 const NoFavoritesArea = styled(SafeArea)`
   align-items: center;
@@ -25,7 +25,7 @@ export const FavoritesScreen = ({ navigation }) => {
           return (
             <TouchableOpacity
               onPress={() =>
-                navigation.navigate("RestaurantDetail", { restaurant: item })
+                navigation.navigate('RestaurantDetail', { restaurant: item })
               }
             >
               <Spacer position="bottom" size="large">

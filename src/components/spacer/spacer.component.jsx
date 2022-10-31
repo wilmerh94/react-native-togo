@@ -1,16 +1,16 @@
-import styled, { useTheme } from "styled-components/native";
+import styled, { useTheme } from 'styled-components/native';
 
 const sizeVariant = {
   small: 1,
   medium: 2,
-  large: 3,
+  large: 3
 };
 
 const positionVariant = {
-  top: "marginTop",
-  left: "marginLeft",
-  right: "marginRight",
-  bottom: "marginBottom",
+  top: 'marginTop',
+  left: 'marginLeft',
+  right: 'marginRight',
+  bottom: 'marginBottom'
 };
 
 const getVariant = (position, size, theme) => {
@@ -32,6 +32,6 @@ export const Spacer = ({ position, size, children }) => {
 };
 
 Spacer.defaultProps = {
-  position: "top",
-  size: "small",
+  position: 'top',
+  size: 'small'
 };

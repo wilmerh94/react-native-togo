@@ -1,10 +1,10 @@
-import styled from "styled-components/native";
-import { colors } from "../../../infrastructure/theme/colors";
+import styled from 'styled-components/native';
+import { colors } from '../../../infrastructure/theme/colors';
 
-import { Button, TextInput } from "react-native-paper";
-import { Text } from "react-native";
+import { Button, TextInput } from 'react-native-paper';
+import { Text } from 'react-native';
 export const AccountBackground = styled.ImageBackground.attrs({
-  source: require("../../../../assets/home_bg.jpg"),
+  source: require('../../../../assets/home_bg.jpg')
 })`
   flex: 1;
   align-items: center;
@@ -23,7 +23,7 @@ export const AccountContainer = styled.View`
   margin-top: ${(props) => props.theme.space[2]};
 `;
 export const AuthButton = styled(Button).attrs({
-  color: colors.brand.primary,
+  buttonColor: colors.brand.primary
 })`
   padding: ${(props) => props.theme.space[2]};
 `;

@@ -1,14 +1,13 @@
-/* eslint-disable comma-dangle */
-import { useCallback, useContext, useState } from "react";
-import { Avatar, List } from "react-native-paper";
-import { TouchableOpacity } from "react-native";
-import styled from "styled-components/native";
-import { Spacer } from "../../../components/spacer/spacer.component";
-import { Text } from "../../../components/typography/text.component";
-import { SafeArea } from "../../../components/utility/safe-area.component";
-import { AuthenticationContext } from "../../../services/authentication/authentication.context";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useFocusEffect } from "@react-navigation/native";
+import { useCallback, useContext, useState } from 'react';
+import { Avatar, List } from 'react-native-paper';
+import { TouchableOpacity } from 'react-native';
+import styled from 'styled-components/native';
+import { Spacer } from '../../../components/spacer/spacer.component';
+import { Text } from '../../../components/typography/text.component';
+import { SafeArea } from '../../../components/utility/safe-area.component';
+import { AuthenticationContext } from '../../../services/authentication/authentication.context';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useFocusEffect } from '@react-navigation/native';
 
 const SettingsItem = styled(List.Item)`
   padding: ${(props) => props.theme.space[3]}; ;
@@ -37,7 +36,7 @@ export const SettingsScreen = ({ navigation }) => {
   return (
     <SafeArea>
       <AvatarContainer>
-        <TouchableOpacity onPress={() => navigation.navigate("Camera")}>
+        <TouchableOpacity onPress={() => navigation.navigate('Camera')}>
           {!photo && (
             <Avatar.Icon size={180} icon="human" backgroundColor="#2182BD" />
           )}
@@ -59,7 +58,7 @@ export const SettingsScreen = ({ navigation }) => {
           title="Favorites"
           description="View your favorites"
           left={(props) => <List.Icon {...props} color="black" icon="heart" />}
-          onPress={() => navigation.navigate("Favorites")}
+          onPress={() => navigation.navigate('Favorites')}
         />
         <SettingsItem
           title="Logout"
