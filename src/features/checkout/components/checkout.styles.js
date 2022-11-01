@@ -1,12 +1,16 @@
 import styled from 'styled-components/native';
 import { colors } from '../../../infrastructure/theme/colors';
 
-import { Button, TextInput } from 'react-native-paper';
+import { Avatar, Button, TextInput } from 'react-native-paper';
 import { Platform, Text } from 'react-native';
 import { CardForm } from '@stripe/stripe-react-native';
 
+export const NameInput = styled(TextInput)`
+  margin: ${(props) => props.theme.space[3]};
+`;
 export const CheckoutInput = styled(TextInput)`
-  height: 44px;
+  margin: ${(props) => props.theme.space[3]};
+
   border-border-color: gray;
   border-bottom-width: 1.5px;
 `;
@@ -53,7 +57,25 @@ export const SwitchText = styled(Text)`
 export const PayButton = styled(Button).attrs({
   buttonColor: colors.brand.primary
 })`
+  align-self: center;
+  width: 80%;
   padding: ${(props) => props.theme.space[2]};
+`;
+export const ClearButton = styled(Button).attrs({
+  buttonColor: colors.ui.error
+})`
+  align-self: center;
+  width: 80%;
+  padding: ${(props) => props.theme.space[2]};
+`;
+
+export const CartIconContainer = styled.View`
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+`;
+export const CartIcon = styled(Avatar.Icon).attrs({ size: 128 })`
+  background-color: ${(props) => props.bg || props.theme.colors.brand.primary};
 `;
 
 export const CheckoutTitle = styled.View`

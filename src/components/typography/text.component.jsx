@@ -1,5 +1,4 @@
 import styled from 'styled-components/native';
-import { withTheme } from 'react-native-paper';
 
 const defaultTextStyles = (theme) => `
 font-family: ${theme.fonts.body};

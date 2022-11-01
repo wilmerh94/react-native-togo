@@ -3,7 +3,9 @@ import styled, { useTheme } from 'styled-components/native';
 const sizeVariant = {
   small: 1,
   medium: 2,
-  large: 3
+  large: 3,
+  xl: 4,
+  xxl: 5
 };
 
 const positionVariant = {

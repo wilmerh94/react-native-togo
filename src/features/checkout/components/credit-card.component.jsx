@@ -1,35 +1,51 @@
-import { useConfirmPayment } from '@stripe/stripe-react-native';
+import { useConfirmPayment, useStripe } from '@stripe/stripe-react-native';
 import { useState } from 'react';
 import { Alert, Text } from 'react-native';
+import { Switch } from 'react-native-paper';
+import { cardTokenRequest } from '../../../services/checkout/checkout.service';
 import {
   CardFields,
   CardInputStyles,
   CheckoutInput,
-  PayButton
+  PayButton,
+  SwitchRow,
+  SwitchText
 } from './checkout.styles';
 const API_URL = 'exp://192.168.0.53:19000';
+export const CreditCard = ({ name, email, onSuccess }) => {
+  const { createToken } = useStripe();
+  const [saveCard, setSaveCard] = useState(false);
 
-export const CreditCard = () => {
+  const [formDetails, setFormDetails] = useState();
   const [isComplete, setComplete] = useState(false);
   const { confirmPayment, loading } = useConfirmPayment();
 
   const fetchPaymentIntentClientSecret = async () => {
-    const response = await fetch(`${API_URL}/payment-sheet`, {
+    const response = await fetch(`${API_URL}/create-payment-intent`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
-      }
+      },
+      body: JSON.stringify({
+        email,
+        currency: 'usd',
+        items: ['id-1']
+        // request_three_d_secure: 'any',
+      })
     });
-    const { paymentIntent, ephemeralKey, customer } = await response.json();
+    // const { paymentIntent, ephemeralKey, customer } = await response.json();
+    const { clientSecret } = await response.json();
 
     return {
-      paymentIntent,
-      ephemeralKey,
-      customer
+      clientSecret
+      // paymentIntent,
+      // ephemeralKey,
+      // customer
     };
   };
 
-  const handlePayPress = async () => {
+  const handlePayPress = async (props) => {
+    console.log(props);
     // 1. fetch Intent Client Secret from backend
     const clientSecret = await fetchPaymentIntentClientSecret();
 
@@ -67,12 +83,6 @@ export const CreditCard = () => {
 
   return (
     <>
-      <CheckoutInput
-        autoCapitalize="none"
-        placeholder="E-mail"
-        keyboardType="email-address"
-        // onChange={(value) => setEmail(value.nativeEvent.text)}
-      />
       <CardFields
         placeholders={{
           number: '4242 4242 4242 4242',
@@ -80,21 +90,41 @@ export const CreditCard = () => {
           cvc: 'CVC',
           expiration: 'MM/YY'
         }}
-        autofocus
         cardStyle={CardInputStyles}
-        onFormComplete={(cardDetails) => {
+        onFormComplete={async (cardDetails) => {
           console.log(cardDetails);
-          setComplete(cardDetails.complete);
+          if (cardDetails.complete) {
+            const card = {
+              number: cardDetails.last4,
+              exp_month: cardDetails.expiryMonth,
+              exp_year: cardDetails.expiryYear
+            };
+            const info = await cardTokenRequest('Card');
+            console.log(info, 'info');
+            if (info.token) {
+              onSuccess(info);
+              setComplete(cardDetails.complete);
+              setFormDetails(cardDetails);
+            }
+          }
         }}
         defaultValues={{
           countryCode: 'US'
         }}
       />
+      <SwitchRow>
+        <Switch
+          onValueChange={(value) => setSaveCard(value)}
+          value={saveCard}
+        />
+        <SwitchText>Save card during payment</SwitchText>
+      </SwitchRow>
       <PayButton
         title="Pay Now"
-        onPress={handlePayPress}
+        onPress={() => cardTokenRequest('Card', createToken)}
+        // onPress={handlePayPress}
         accessibilityLabel="Pay"
-        disabled={!isComplete}
+        disabled={isComplete}
         loading={loading}
       >
         <Text>Pay</Text>
