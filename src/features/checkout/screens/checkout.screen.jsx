@@ -88,7 +88,10 @@ export const CheckoutScreen = ({ navigation }) => {
             </Spacer>
             <List.Section>
               {cart.map(({ item, price }) => (
-                <List.Item title={`${item} - ${price / 100}`} key={item} />
+                <List.Item
+                  title={`${item} - ${price / 100}`}
+                  key={`${item} - ${Math.random()}`}
+                />
               ))}
             </List.Section>
             <Text variant="body">Total: {sum / 100}</Text>
