@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Alert, Text } from 'react-native';
 import { Switch } from 'react-native-paper';
 import { cardTokenRequest } from '../../../services/checkout/checkout.service';
+import { host } from '../../../utils/env';
 import {
   CardFields,
   CardInputStyles,
@@ -11,8 +12,8 @@ import {
   SwitchRow,
   SwitchText
 } from './checkout.styles';
-const API_URL = 'exp://192.168.0.53:19000';
-export const CreditCard = ({ name, email, onSuccess }) => {
+// const API_URL = 'exp://192.168.0.53:19000';
+export const CreditCard = ({ name, email, onSuccess, onError }) => {
   const { createToken } = useStripe();
   const [saveCard, setSaveCard] = useState(false);
 
@@ -21,7 +22,7 @@ export const CreditCard = ({ name, email, onSuccess }) => {
   const { confirmPayment, loading } = useConfirmPayment();
 
   const fetchPaymentIntentClientSecret = async () => {
-    const response = await fetch(`${API_URL}/create-payment-intent`, {
+    const response = await fetch(`${host}/pay`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -45,7 +46,7 @@ export const CreditCard = ({ name, email, onSuccess }) => {
   };
 
   const handlePayPress = async (props) => {
-    console.log(props);
+    // console.log(props);
     // 1. fetch Intent Client Secret from backend
     const clientSecret = await fetchPaymentIntentClientSecret();
 
@@ -92,20 +93,23 @@ export const CreditCard = ({ name, email, onSuccess }) => {
         }}
         cardStyle={CardInputStyles}
         onFormComplete={async (cardDetails) => {
-          console.log(cardDetails);
-          if (cardDetails.complete) {
-            const card = {
-              number: cardDetails.last4,
-              exp_month: cardDetails.expiryMonth,
-              exp_year: cardDetails.expiryYear
-            };
-            const info = await cardTokenRequest('Card');
-            console.log(info, 'info');
-            if (info.token) {
-              onSuccess(info);
+          // console.log(cardDetails);
+          try {
+            if (cardDetails.complete) {
+              // const card = {
+              //   number: cardDetails.last4,
+              //   exp_month: cardDetails.expiryMonth,
+              //   exp_year: cardDetails.expiryYear,
+              //   type: 'Card'
+              // };
+              // const info = await cardTokenRequest(card);
+              // console.log(info, 'INFO');
+              onSuccess({ ...cardDetails, name, type: 'Card' });
               setComplete(cardDetails.complete);
               setFormDetails(cardDetails);
             }
+          } catch (error) {
+            onError();
           }
         }}
         defaultValues={{
@@ -119,16 +123,15 @@ export const CreditCard = ({ name, email, onSuccess }) => {
         />
         <SwitchText>Save card during payment</SwitchText>
       </SwitchRow>
-      <PayButton
+      {/* <PayButton
         title="Pay Now"
-        onPress={() => cardTokenRequest('Card', createToken)}
+        // onPress={() => cardTokenRequest('Card', createToken)}
         // onPress={handlePayPress}
         accessibilityLabel="Pay"
         disabled={isComplete}
         loading={loading}
-      >
-        <Text>Pay</Text>
-      </PayButton>
+      > */}
+      {/* <Text>Pay</Text> */}
     </>
   );
 };

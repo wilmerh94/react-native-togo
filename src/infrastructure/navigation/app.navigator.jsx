@@ -5,12 +5,12 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { RestaurantsNavigator } from './restaurants.navigator';
 import { SettingsNavigator } from './settings.navigator';
 // Screens
-import { CheckoutScreen } from '../../features/checkout/screens/checkout.screen';
+import { CartContextProvider } from '../../services/cart/cart.context';
+import { FavoriteContextProvider } from '../../services/favorites/favorites.context';
 import { LocationContextProvider } from '../../services/location/location.context';
 import { RestaurantsContextProvider } from '../../services/restaurants/restaurants.context';
+import { CheckoutNavigator } from './checkout.navigator';
 import MapNavigator from './map.navigator';
-import { FavoriteContextProvider } from '../../services/favorites/favorites.context';
-import { CartContextProvider } from '../../services/cart/cart.context';
 
 //----------------------------------------------------------------
 // Creating the tab navigation
@@ -18,7 +18,7 @@ const Tab = createBottomTabNavigator();
 // Adding icons that I will use
 const TAB_ICON = {
   Restaurants: 'silverware-clean',
-  Checkout: 'cart',
+  Checkouts: 'cart',
   Maps: 'map-search',
   Settings: 'account-cog'
 };
@@ -52,8 +52,8 @@ export const AppNavigator = () => {
                 }}
               />
               <Tab.Screen
-                name="Checkout"
-                component={CheckoutScreen}
+                name="Checkouts"
+                component={CheckoutNavigator}
                 options={{
                   headerShown: false
                 }}

@@ -3,9 +3,9 @@ import { Alert } from 'react-native';
 import { host } from '../../utils/env';
 
 // Create Token
-export const cardTokenRequest = async (type) => {
-  const { error, token } = await createToken(buildTestTokenParams(type));
-  console.log(token);
+export const cardTokenRequest = async (card) => {
+  const { error, token } = await createToken(buildTestTokenParams(card));
+  // console.log(token);
   if (error) {
     Alert.alert(`Error code: ${error.code}`, error.message);
     console.log(`Error: ${JSON.stringify(error)}`);
@@ -21,18 +21,15 @@ export const cardTokenRequest = async (type) => {
   };
 };
 
-const buildTestTokenParams = (type) => {
-  switch (type) {
-    case 'Pii':
-      return {
-        type: 'Pii',
-        personalId: '000000000'
-      };
+const buildTestTokenParams = (card) => {
+  switch (card.type) {
     case 'Card':
       return {
         type: 'Card',
-        name: 'David Wallace',
-        currency: 'eur'
+        name: card.name,
+        exp_month: card.exp_month,
+        exp_year: card.exp_year,
+        currency: 'USD'
       };
     case 'BankAccount':
       return {
@@ -47,7 +44,8 @@ const buildTestTokenParams = (type) => {
   }
 };
 
-export const payRequest = (token, amount, name) => {
+export const payRequest = async (token, amount, name) => {
+  console.log(token, amount, name, 'payRequest');
   return fetch(`${host}/pay`, {
     body: JSON.stringify({
       token,

@@ -71,7 +71,7 @@ export const RestaurantDetailScreen = ({ route, navigation }) => {
           icon="currency-usd"
           onPress={() => {
             addToCart({ item: 'special', price: 1299 }, restaurant);
-            navigation.navigate('Checkout');
+            navigation.navigate('Checkouts');
           }}
         >
           Order Special 12.99
