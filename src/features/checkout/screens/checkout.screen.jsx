@@ -1,7 +1,7 @@
 import { StripeProvider } from '@stripe/stripe-react-native';
 import { useContext, useEffect, useState } from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
-import { List } from 'react-native-paper';
+import { Divider, List } from 'react-native-paper';
 import { Spacer } from '../../../components/spacer/spacer.component';
 import { Text } from '../../../components/typography/text.component';
 import { SafeArea } from '../../../components/utility/safe-area.component';
@@ -76,6 +76,7 @@ export const CheckoutScreen = ({ navigation }) => {
     >
       <SafeArea>
         <RestaurantInfoCard restaurant={restaurant} />
+        <Spacer size="medium" />
         {isLoading && <PaymentProcessing />}
         <ScrollView
           accessibilityLabel="payment-screen"
@@ -87,15 +88,17 @@ export const CheckoutScreen = ({ navigation }) => {
               <Text variant="body">Your Order</Text>
             </Spacer>
             <List.Section>
-              {cart.map(({ item, price }) => (
+              {cart.map(({ item, price }, i) => (
                 <List.Item
                   title={`${item} - ${price / 100}`}
-                  key={`${item} - ${Math.random()}`}
+                  key={`${item} - ${i}`}
                 />
               ))}
             </List.Section>
             <Text variant="body">Total: {sum / 100}</Text>
           </Spacer>
+          <Spacer size="medium" />
+          <Divider bold />
           <NameInput
             label="Name"
             value={name}

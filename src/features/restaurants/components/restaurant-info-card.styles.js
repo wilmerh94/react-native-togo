@@ -8,11 +8,15 @@ export const Icon = styled.Image`
 
 export const RestaurantCard = styled(Card)`
   background-color: ${(props) => props.theme.colors.bg.primary};
+  width: 95%;
+  align-self: center;
+  border-radius: 25px;
 `;
 
 export const RestaurantCardCover = styled(Card.Cover)`
   padding: ${(props) => props.theme.space[3]};
   background-color: ${(props) => props.theme.colors.bg.primary};
+  border-radius: 50px;
 `;
 
 export const Address = styled.Text`

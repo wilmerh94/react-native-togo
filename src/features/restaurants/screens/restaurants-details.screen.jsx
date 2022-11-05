@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react';
 import { ScrollView } from 'react-native';
-import { List } from 'react-native-paper';
+import { Divider, List } from 'react-native-paper';
 import { Spacer } from '../../../components/spacer/spacer.component';
 
 import { SafeArea } from '../../../components/utility/safe-area.component';
@@ -19,6 +19,8 @@ export const RestaurantDetailScreen = ({ route, navigation }) => {
   return (
     <SafeArea>
       <RestaurantInfoCard restaurant={restaurant} />
+
+      <Spacer size="large" />
       <ScrollView>
         <List.Accordion
           title="Breakfast"
@@ -27,8 +29,12 @@ export const RestaurantDetailScreen = ({ route, navigation }) => {
           onPress={() => setBreakfastExpanded(!breakfastExpanded)}
         >
           <List.Item title="Eggs Benedict" />
+          <Divider horizontalInset bold />
+
           <List.Item title="Classic Breakfast" />
         </List.Accordion>
+
+        <Divider bold />
 
         <List.Accordion
           title="Lunch"
@@ -37,9 +43,15 @@ export const RestaurantDetailScreen = ({ route, navigation }) => {
           onPress={() => setLunchExpanded(!lunchExpanded)}
         >
           <List.Item title="Burger w/ Fries" />
+          <Divider horizontalInset bold />
+
           <List.Item title="Steak Sandwich" />
+          <Divider horizontalInset bold />
+
           <List.Item title="Mushroom Soup" />
         </List.Accordion>
+
+        <Divider bold />
 
         <List.Accordion
           title="Dinner"
@@ -48,9 +60,14 @@ export const RestaurantDetailScreen = ({ route, navigation }) => {
           onPress={() => setDinnerExpanded(!dinnerExpanded)}
         >
           <List.Item title="Spaghetti Bolognese" />
+          <Divider horizontalInset bold />
+
           <List.Item title="Veal Cutlet with Chicken Mushroom Rotini" />
+          <Divider horizontalInset bold />
+
           <List.Item title="Steak Frites" />
         </List.Accordion>
+        <Divider bold />
 
         <List.Accordion
           title="Drinks"
@@ -59,9 +76,17 @@ export const RestaurantDetailScreen = ({ route, navigation }) => {
           onPress={() => setDrinksExpanded(!drinksExpanded)}
         >
           <List.Item title="Coffee" />
+          <Divider horizontalInset bold />
+
           <List.Item title="Tea" />
+          <Divider horizontalInset bold />
+
           <List.Item title="Modelo" />
+          <Divider horizontalInset bold />
+
           <List.Item title="Coke" />
+          <Divider horizontalInset bold />
+
           <List.Item title="Fanta" />
         </List.Accordion>
       </ScrollView>

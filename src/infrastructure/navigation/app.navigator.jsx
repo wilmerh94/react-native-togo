@@ -11,6 +11,7 @@ import { LocationContextProvider } from '../../services/location/location.contex
 import { RestaurantsContextProvider } from '../../services/restaurants/restaurants.context';
 import { CheckoutNavigator } from './checkout.navigator';
 import MapNavigator from './map.navigator';
+import { colors } from '../theme/colors';
 
 //----------------------------------------------------------------
 // Creating the tab navigation
@@ -30,8 +31,8 @@ export const createScreenOptions = ({ route }) => {
     tabBarIcon: ({ color, size }) => (
       <MaterialCommunityIcons name={iconName} size={size} color={color} />
     ),
-    tabBarActiveTintColor: 'tomato',
-    tabBarInactiveTintColor: 'gray'
+    tabBarActiveTintColor: colors.brand.primary,
+    tabBarInactiveTintColor: colors.brand.muted
   };
 };
 

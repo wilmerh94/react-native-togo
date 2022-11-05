@@ -49,6 +49,8 @@ export const RestaurantsScreen = ({ navigation }) => {
       {isToggled && (
         <FavoritesBar favorites={favorites} onNavigate={navigation.navigate} />
       )}
+
+      <Spacer size="medium" />
       {hasError && (
         <Spacer position="left" size="large">
           <Text variant="error">Something went wrong</Text>

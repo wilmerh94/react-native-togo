@@ -14,6 +14,7 @@ import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 export const NameInput = styled(TextInput)`
   margin: ${(props) => props.theme.space[3]};
+  border-bottom-width: 1.5px;
 `;
 export const CheckoutInput = styled(TextInput)`
   margin: ${(props) => props.theme.space[3]};
